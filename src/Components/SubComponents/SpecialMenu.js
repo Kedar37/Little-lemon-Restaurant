@@ -6,4 +6,4 @@ function SpecialMenu() {
   )
 }
 
-export default SpecialMenu
+export default SpecialMenu;

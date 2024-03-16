@@ -1,13 +1,61 @@
-body {
+*{
+  font-family: "Poppins", sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  outline: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.navBar{
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: antiquewhite;
+}
+
+.navLogo{
+  width: 200px;
+  height: 50px;
+}
+
+.navLogo > img{
+  object-fit: cover;
+}
+
+.links > ul > .navigation{
+  text-decoration: none;
+  list-style: none;
+  display: inline-flex;
+  margin: 0px 45px 0px 0px;
+  font-size: 16px;
+  color: #333333;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.links > ul > .navigation:hover{
+  color: coral;
+}
+
+.loginBtn{
+  width: 100px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  cursor: pointer;
+  background-color: #F4CE14;
+  color: #495E57;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.loginBtn:hover{
+  background-color: #495E57;
+  color: #F4CE14;
+  transition: all 0.5s;
 }

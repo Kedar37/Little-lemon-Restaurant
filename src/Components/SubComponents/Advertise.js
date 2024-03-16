@@ -2,8 +2,8 @@ import React from 'react'
 
 function Advertise() {
   return (
-    <div>Advertis</div>
+    <div>Advertisement</div>
   )
 }
 
-export default Advertise
+export default Advertise;

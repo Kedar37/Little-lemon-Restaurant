@@ -6,13 +6,13 @@ import Info from './SubComponents/Info'
 
 function Main() {
   return (
-    <>
+    <div>
         <Advertise/>
         <SpecialMenu/>
         <Testemonial/>
         <Info/>
-    </>
+    </div>
   )
 }
 
-export default Main
+export default Main;

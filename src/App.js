@@ -7,23 +7,30 @@ import Order from './Pages/Order';
 import Reserve from './Pages/Reserve';
 
 function App() {
+
   return (
     <>
       <nav className='navBar'>
-        <ul>
-          <Link to='/' className='navigation'>Home</Link>
-          <Link to='/about' className='navigation'>About</Link>
-          <Link to='/menu' className='navigation'>Menu</Link>
-          <Link to='/order' className='navigation'>Order</Link>
-          <Link to='/reserve' className='navigation'>Reserve</Link>
-        </ul>
+        <div className='navLogo'>
+          <img src='/Images/Logo.svg' alt='logo' />
+        </div>
+        <div className='links'>
+          <ul>
+            <Link to='/' className='navigation'>Home</Link>
+            <Link to='/about' className='navigation'>About</Link>
+            <Link to='/menu' className='navigation'>Menu</Link>
+            <Link to='/order' className='navigation'>Order</Link>
+            <Link to='/reserve' className='navigation'>Reserve</Link>
+          </ul>
+        </div>
+        <div className='loginBtn' role='button'>Login</div>
       </nav>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/' element={<About/>} />
-        <Route path='/' element={<Menu/>} />
-        <Route path='/' element={<Order/>} />
-        <Route path='/' element={<Reserve/>} />
+        <Route path='/about' element={<About/>} />
+        <Route path='/menu' element={<Menu/>} />
+        <Route path='/order' element={<Order/>} />
+        <Route path='/reserve' element={<Reserve/>} />
       </Routes>
     </>
   );

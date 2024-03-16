@@ -6,4 +6,4 @@ function Reserve() {
   )
 }
 
-export default Reserve
+export default Reserve;

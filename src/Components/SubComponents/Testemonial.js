@@ -6,4 +6,4 @@ function Testemonial() {
   )
 }
 
-export default Testemonial
+export default Testemonial;
