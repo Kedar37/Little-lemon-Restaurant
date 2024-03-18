@@ -5,6 +5,7 @@ import About from './Pages/About';
 import Menu from './Pages/Menu';
 import Order from './Pages/Order';
 import Reserve from './Pages/Reserve';
+import Footer from './Components/Footer';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/order' element={<Order/>} />
         <Route path='/reserve' element={<Reserve/>} />
       </Routes>
+      <Footer />
     </>
   );
 }

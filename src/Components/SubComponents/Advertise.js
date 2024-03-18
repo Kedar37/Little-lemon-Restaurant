@@ -42,7 +42,7 @@ const Content = styled.div`
 
 const Title = styled.h2`
   font-size: 42px;
-  margin=bottom: 10px;
+  margin-bottom: 10px;
 `;
 
 const BranchName = styled.h3`
@@ -56,6 +56,16 @@ const AdContent = styled.p`
   overflow-y: scroll;
   max-height: auto;
   margin-bottom: 50px;
+
+  &::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #e0e0e0; /* Color of the thumb */
+    border-radius: 5px; /* Radius of the thumb */
+    cursor: pointer;
+  }
 `;
 
 const ReserveBtn = styled.button`

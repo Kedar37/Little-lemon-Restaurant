@@ -13,7 +13,7 @@ function Main() {
         <SpecialMenu/>
         <Divider/>
         <Testemonial/>
-        <Divider/>
+        <TestiDivider className='testimonial'/>
         <Info/>
     </div>
   )
@@ -24,6 +24,13 @@ height: 2px;
 border-radius: 2px;
 background-color: gray;
 margin: 2rem 7.5rem;
+`;
+
+const TestiDivider = styled.div`
+height: 2px;
+border-radius: 2px;
+background-color: gray;
+margin: 4rem 7.5rem 2rem 7.5rem;
 `;
 
 export default Main;

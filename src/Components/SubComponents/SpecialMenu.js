@@ -132,6 +132,16 @@ const Details = styled.p`
   max-height: auto;
   margin-bottom: 15px;
   font-size: 13px;
+
+  &::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #e0e0e0; /* Color of the thumb */
+    border-radius: 5px; /* Radius of the thumb */
+    cursor: pointer;
+  }
 `;
 
 const OrderBtn = styled.button`
