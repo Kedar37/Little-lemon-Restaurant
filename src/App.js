@@ -6,6 +6,7 @@ import Menu from './Pages/Menu';
 import Order from './Pages/Order';
 import Reserve from './Pages/Reserve';
 import Footer from './Components/Footer';
+import ConfirmedBooking from './Components/SubComponents/ConfirmedBooking';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/menu' element={<Menu/>} />
         <Route path='/order' element={<Order/>} />
         <Route path='/reserve' element={<Reserve/>} />
+        <Route path='/confirmed-booking' element={<ConfirmedBooking />} />
       </Routes>
       <Footer />
     </>

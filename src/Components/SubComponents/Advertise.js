@@ -81,7 +81,7 @@ const ReserveBtn = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #EE9972;
+    background-color: #495E57;
     color: white;
     cursor: pointer;
   }
