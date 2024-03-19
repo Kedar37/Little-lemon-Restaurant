@@ -4,7 +4,7 @@ import BookingForm from './BookingForm';
 describe('Booking form', () => {
   const availableTimes = ['17:00', '17:30'];
   const today = new Date().toISOString().split('T')[0];
-  const dispatchOnDateChange = jest.fn();
+//   const dispatchOnDateChange = jest.fn();
   const submitData = jest.fn();
 
   test('should correctly render all fields and their default values', async () => {

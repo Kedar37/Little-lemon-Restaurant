@@ -1,7 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom';
 
 function Advertise() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/reserve');
+  }
+
   return (
     <Container>
       <ContentBox>
@@ -12,7 +20,7 @@ function Advertise() {
           Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
           Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
           </AdContent>
-          <ReserveBtn>Reserve Table</ReserveBtn>
+          <ReserveBtn onClick={handleClick}>Reserve Table</ReserveBtn>
         </Content>
         <AdImg><Img src='/Images/restauranfood.jpg' alt='restaurant'/></AdImg>
       </ContentBox>
