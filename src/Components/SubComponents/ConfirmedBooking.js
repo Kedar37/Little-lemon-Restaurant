@@ -1,10 +1,20 @@
 import React from 'react'
 
 function ConfirmedBooking() {
+
+  const bg = {
+    width: '100vw',
+    height: '80vh',
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    position: 'relative'
+  }
+
   return (
-    <div style={{textAlign: 'center', height: '20vh', width: '40vw', backgroundColor: 'green', color: 'white', display: 'flex', alignItems: 'center', margin: '2rem auto', borderRadius: '16px'}}>
-      Your Reservation has been completed!
-      We will contact you shortly!
+    <div style={bg}>
+      <img src='/Images/confirm.gif' alt='construction' width={'300px'} height={'300px'} />
+      <h2>Your Reservation has been completed! We will contact you shortly!</h2>
     </div>
   )
 }
