@@ -2,12 +2,14 @@ import './App.css';
 import {Routes, Route, Link} from 'react-router-dom'
 import Home from './Pages/Home';
 import About from './Pages/About';
-import Menu from './Pages/Menu';
-import Order from './Pages/Order';
+// import Menu from './Pages/Menu';
+// import Order from './Pages/Order';
 // import Reserve from './Pages/Reserve';
 import Footer from './Components/Footer';
 import ConfirmedBooking from './Components/SubComponents/ConfirmedBooking';
 import BookTable from './Components/SubComponents/BookTable';
+import Login from './Pages/Login';
+import MenuOrder from './Pages/MenuOrder';
 
 function App() {
 
@@ -31,8 +33,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/about' element={<About/>} />
-        <Route path='/menu' element={<Menu/>} />
-        <Route path='/order' element={<Order/>} />
+        <Route path='/menu' element={<MenuOrder/>} />
+        <Route path='/order' element={<Login/>} />
         <Route path='/reserve' element={<BookTable/>} />
         <Route path='/confirmed-booking' element={<ConfirmedBooking />} />
       </Routes>

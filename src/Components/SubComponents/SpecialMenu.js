@@ -1,7 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase';
 import styled from 'styled-components';
 
 function SpecialMenu() {
+
+  const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const fetchItems = async () => {
+            const menuCollection = collection(db, 'Menu-items')
+            const q = query(menuCollection, where("type", "==", "specials"))
+            const snapshot = await getDocs(q);
+            const menuData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+            setItems(menuData);
+        }
+        fetchItems();
+    }, []);
+
   return (
     <Container>
       <CardContainer>
@@ -10,42 +26,22 @@ function SpecialMenu() {
           <ViewMore>view more</ViewMore>
         </Head>
         <CardBox>
-          <Card>
-            <FoodImg src='/Images/greek salad.jpg' alt=''/>
+          {items.map(item => (
+          <Card key={item.id}>
+            <img src={item.img} alt={item.title}
+            style={{width: '100%',
+              height: '150px',
+              objectFit: 'cover',
+              borderRadius: '16px',
+              marginBottom: '15px'}}/>
             <FoodDetail>
-              <Title>Lemon Dessert</Title>
-              <Price>$10.50</Price>
+              <Title>{item.title}</Title>
+              <Price>{item.price}</Price>
             </FoodDetail>
-            <Details>
-              Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
-              Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
-            </Details>
+            <Details>{item.description}</Details>
             <OrderBtn>Order Now</OrderBtn>
           </Card>
-          <Card>
-            <FoodImg src='/Images/lemon dessert.jpg' alt=''/>
-            <FoodDetail>
-              <Title>Lemon Dessert</Title>
-              <Price>$10.50</Price>
-            </FoodDetail>
-            <Details>
-              Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
-              Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
-            </Details>
-            <OrderBtn>Order Now</OrderBtn>
-          </Card>
-          <Card>
-            <FoodImg src='/Images/bruchetta.svg' alt=''/>
-            <FoodDetail>
-              <Title>Lemon Dessert</Title>
-              <Price>$10.50</Price>
-            </FoodDetail>
-            <Details>
-              Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
-              Lorem ipsum dolor sit; amet consectetur adipisicing elit. Maxime labore esse provident voluptates; adipisci nemo iure dolorum culpa facilis. Enim quos explicabo at nulla!
-            </Details>
-            <OrderBtn>Order Now</OrderBtn>
-          </Card>
+          ))}
         </CardBox>
       </CardContainer>
     </Container>
@@ -93,24 +89,30 @@ const CardBox = styled.div`
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
 `;
 
 const Card = styled.div`
-  width: 290px;
+  width: 250px;
   height: auto;
   padding: 20px;
   border-radius: 16px;
   background-color: #EDEFEE;
+  transition: all 0.3s ease;
+
+  &:hover{
+    transform: scale(1.03);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3);
+  }
 `;
 
-const FoodImg = styled.img`
-width: 100%;
-height: 150px;
-object-fit: cover;
-border-radius: 16px;
-margin-bottom: 15px;
-`;
+// const FoodImg = styled.img`
+// width: 100%;
+// height: 150px;
+// object-fit: cover;
+// border-radius: 16px;
+// margin-bottom: 15px;
+// `;
 
 const FoodDetail = styled.div`
 display: flex;
@@ -119,15 +121,18 @@ margin-bottom: 15px;
 `;
 
 const Title = styled.h3`
+width: 150px;
+font-size: 18px;
 `;
 
 const Price = styled.h3`
+font-size: 18px;
 color: #EE9972;
 `;
 
 const Details = styled.p`
   width: 100%;
-  height: 75px;
+  height: 60px;
   overflow-y: scroll;
   max-height: auto;
   margin-bottom: 15px;
