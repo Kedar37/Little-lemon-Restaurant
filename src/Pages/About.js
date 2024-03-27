@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Components/Footer'
 
 function About() {
 
@@ -21,11 +22,14 @@ function About() {
   }
 
   return (
+    <>
     <div style={bg}>
       <div style={style}>
         <img src='/Images/cont.gif' alt='construction' width={'450px'} height={'450px'} />
       </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

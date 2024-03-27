@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-color: cadetblue;
+    background-color: white;
     padding: 3rem 0;
 }
 
@@ -28,9 +28,9 @@
 .filter > button{
     width: 130px;
     height: 60px;
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid #333333;
     background-color: transparent;
-    color: white;
+    color: #333333;
     border-radius: 16px;
     font-weight: 550;
     cursor: pointer;
@@ -141,7 +141,7 @@
     height: 700px;
     position: relative;
     border-radius: 16px;
-    background-color: white;
+    background-color: antiquewhite;
 }
 
 .cartTitle{

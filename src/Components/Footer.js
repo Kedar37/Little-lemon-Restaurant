@@ -18,9 +18,11 @@ const FooterContainer = styled.footer`
 `;
 
 const LogoContainer = styled.div`
-  padding: 1rem;
+  width: 150px;
+  padding: 16px;
   background-color: white;
   border-radius: 16px;
+  text-align: center;
 `;
 
 const Logo = styled.img`
@@ -28,7 +30,9 @@ const Logo = styled.img`
 `;
 
 const Section = styled.section`
+  width: 200px;
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 const SectionHeading = styled.h3`
@@ -43,11 +47,11 @@ const SectionHeading = styled.h3`
 const NavigationList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0;
 `;
 
 const NavigationItem = styled.li`
-  margin-bottom: 5px;
+  margin: 0 5px;
   @media (max-width: 768px){
     font-size: 13px;
   }
@@ -70,24 +74,10 @@ const NavigationLink = styled.a`
   return (
     <>
     <FooterContainer>
-      <LogoContainer>
-        <Logo src="/Images/Logo.svg" alt="Little Lemon"/>
-      </LogoContainer>
-
-      <Section>
+      {/* <Section>
         <SectionHeading>Media Links</SectionHeading>
-        <NavigationList>
-          <NavigationItem>
-            <NavigationLink href="http://www.instagram.com">Instagram</NavigationLink>
-          </NavigationItem>
-          <NavigationItem>
-            <NavigationLink href="http://www.facebook.com">Facebook</NavigationLink>
-          </NavigationItem>
-          <NavigationItem>
-            <NavigationLink href="http://www.x.com">X</NavigationLink>
-          </NavigationItem>
-        </NavigationList>
-      </Section>
+        
+      </Section> */}
 
       <Section>
         <SectionHeading>Contact Us</SectionHeading>
@@ -100,6 +90,23 @@ const NavigationLink = styled.a`
           </NavigationItem>
         </NavigationList>
       </Section>
+
+      <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+      <LogoContainer>
+        <Logo src="/Images/Logo.svg" alt="Little Lemon"/>
+      </LogoContainer>
+      <div style={{display: 'flex', listStyle: 'none', marginTop: '10px'}}>
+          <NavigationItem>
+            <NavigationLink href="http://www.instagram.com">Instagram</NavigationLink>
+          </NavigationItem>
+          <NavigationItem>
+            <NavigationLink href="http://www.facebook.com">Facebook</NavigationLink>
+          </NavigationItem>
+          <NavigationItem>
+            <NavigationLink href="http://www.x.com">X</NavigationLink>
+          </NavigationItem>
+        </div>
+        </div>
 
       <Section>
         <SectionHeading>Navigation</SectionHeading>

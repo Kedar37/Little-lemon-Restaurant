@@ -72,3 +72,15 @@
   color: #F4CE14;
   transition: all 0.5s;
 }
+
+.signoutLink{
+  padding: 10px 15px;
+  background-color: #333333;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.signoutLink:hover{
+  color: #F4CE14;
+}

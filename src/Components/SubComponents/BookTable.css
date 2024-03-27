@@ -21,6 +21,7 @@
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
     position: relative;
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .title{
@@ -44,6 +45,10 @@ h3{
     flex-direction: column;
     padding: 0 3rem;
     margin: 0 auto;
+}
+
+input:focus{
+    border-color: 2px solid rgb(0, 136, 255);
 }
 
 .field{

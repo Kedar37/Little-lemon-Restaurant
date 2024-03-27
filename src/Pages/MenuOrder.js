@@ -6,22 +6,49 @@ import { db } from '../firebase'
 function MenuOrder() {
 
     const [items, setItems] = useState([]);
-    const [cartItem, setCartItem] = useState([])
-
-    const [activeButton, setActiveButton] = useState('');
-
+    const [activeButton, setActiveButton] = useState('all');
+    const [cartItems, setCartItems] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(0);
+  
+    const deliveryCharge = 1;
+    const taxRate = 0.1;
+  
     const handleButtonClick = (buttonType) => {
-        setActiveButton(buttonType);
+      setActiveButton(buttonType);
     };
-
+  
     const handleAddToCart = (item) => {
-        setCartItem([...cartItem, item])
-    }
-
-    const handleRemoveItem = (index) => {
-        const updatedCartItems = cartItem.filter((item, i) => i !== index);
-        setCartItem(updatedCartItems);
-      };
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      setTotalAmount(totalAmount + parseFloat(item.price.slice(1)));
+    };
+  
+    const handleRemoveItems = (index) => {
+      const updatedCartItems = cartItems.filter((item, i) => i !== index);
+      const removedItem = cartItems[index];
+      const updatedTotalAmount = totalAmount - removedItem.quantity * parseFloat(removedItem.price.slice(1));
+      setCartItems(updatedCartItems);
+      setTotalAmount(updatedTotalAmount);
+    };
+  
+    const handleIncreaseQuantity = (index) => {
+      const updatedCartItems = [...cartItems];
+      const item = updatedCartItems[index];
+      item.quantity += 1;
+      const updatedTotalAmount = totalAmount + parseFloat(item.price.slice(1));
+      setCartItems(updatedCartItems);
+      setTotalAmount(updatedTotalAmount);
+    };
+  
+    const handleDecreaseQuantity = (index) => {
+      const updatedCartItems = [...cartItems];
+      const item = updatedCartItems[index];
+      if (item.quantity > 1) {
+        item.quantity -= 1;
+        const updatedTotalAmount = totalAmount - parseFloat(item.price.slice(1));
+        setCartItems(updatedCartItems);
+        setTotalAmount(updatedTotalAmount);
+      }
+    };
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -48,9 +75,15 @@ function MenuOrder() {
           setItems(menuData);
         };
         fetchItems();
-      }, [activeButton]);
+    }, [activeButton]);
 
 
+    const calculateTotalAmount = () => {
+        const itemTotal = totalAmount;
+        const taxAmount = itemTotal * taxRate;
+        const grandTotal = itemTotal + deliveryCharge + taxAmount;
+        return grandTotal.toFixed(2);
+    };
 
     return (
     <div className='menuContainer'>
@@ -114,20 +147,20 @@ function MenuOrder() {
                 </div>
                 <div className='cartItems'>
                     <div className='items-box'>
-                        {cartItem.map((item, index) => (
+                        {cartItems.map((item, index) => (
                         <div className='itemContainer' key={index}>
                             <div className='removeBtn'>
-                                <button className='remove' onClick={() => handleRemoveItem(index)}>X</button>
+                                <button className='remove' onClick={() => handleRemoveItems(index)}>X</button>
                             </div>
                             <div className='addedItem'>
                                 <img src={item.img} alt={item.title}/>
                                 <p className='itemName'>{item.title}</p>
                                 <div className='qtyBtns'>
-                                    <button className='add'>+</button>
-                                    <p>1</p>
-                                    <button className='del'>-</button>
+                                    <button className='add' onClick={() => handleIncreaseQuantity(index)}>+</button>
+                                    <p>{item.quantity}</p>
+                                    <button className='del' onClick={() => handleDecreaseQuantity(index)}>-</button>
                                 </div>
-                                <h3 className='price'>{item.price}</h3>
+                                <h3 className='price'>{(item.quantity * parseFloat(item.price.slice(1))).toFixed(2)}</h3>
                             </div>
                         </div>
                         ))}
@@ -137,15 +170,15 @@ function MenuOrder() {
                 <div className='taxes'>
                     <div className='deliveryTax'>
                         <p>Delivery Charge:</p>
-                        <p>$1</p>
+                        <p>{deliveryCharge}</p>
                     </div>
                     <div className='restTax'>
                         <p>Taxes:</p>
-                        <p>$1</p>
+                        <p>{(totalAmount * taxRate).toFixed(2)}</p>
                     </div>
                     <div className='total'>
                         <p>Total Amount:</p>
-                        <p>$15</p>
+                        <p>{calculateTotalAmount()}</p>
                     </div>
                 </div>
                 <div className='payBtn'>

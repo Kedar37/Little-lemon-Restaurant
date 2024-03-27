@@ -1,29 +1,38 @@
 import React, {useState, useEffect} from 'react'
-import { auth, provider } from '../firebase'
-import {signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { auth, db, provider } from '../firebase'
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { useNavigate, Link } from 'react-router-dom'
+import { doc, setDoc, collection } from 'firebase/firestore'
 import './SignUp.css'
 
-function Login() {
+function SignUp() {
 
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [user, setUser] = useState(null)
 
     const navigate = useNavigate()
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, pass);
-        console.log(userCredential);
-        const user = userCredential.user;
-        localStorage.setItem('token', user.accessToken);
-        localStorage.setItem('user', JSON.stringify(user));
-        navigate("/home");
-      } catch (error) {
-        console.error(error);
-      }
+    const signIn = async (e) => {
+        e.preventDefault()       
+        await createUserWithEmailAndPassword(auth, email, pass)
+        
+        const userCred = {
+            name, 
+            email,
+            pass
+        }
+
+        const userRef = doc(collection(db, 'Users'));
+            await setDoc(userRef, userCred)
+                .then(() => {
+                    console.log("Account has been created!")
+                })
+                .catch((error) => {
+                    console.log("error has occured!", error);
+                })
+        navigate('/home')
     }
 
     const Login = async () => {
@@ -37,27 +46,21 @@ function Login() {
           navigate('/home')
     }
 
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-          if (user) {
-            setUser(user);
-            // navigate('/home');
-          } else {
-            setUser(null);
-            navigate('/');
-          }
-        });
-        return () => unsubscribe();
-      }, [navigate]);
-
-
     return (
+
             <div className='SubContainer'>
                 <h2 className='signHead'>Welcome to Little Lemon!</h2>
                 <div className='formContainer'>
-                    <h3 className='head2'>Login</h3>
-                    <form onSubmit={handleSubmit} className='signForm'>
+                    <h3 className='head2'>Register your account</h3>
+                    <form onSubmit={signIn} className='signForm'>
+                    <div className='field'>
+                        <label htmlFor='name'>Enter Name</label>
+                        <input 
+                        type='text' 
+                        id='name' 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)}/>
+                    </div>
                     <div className='field'>
                         <label htmlFor='email'>Enter Email</label>
                         <input 
@@ -79,7 +82,7 @@ function Login() {
                         </div>
                     </div>
                     <div className='createBtn'>
-                        <button type='submit' className='submitBtn'>Login</button>
+                        <button type='submit' className='submitBtn'>Create Account</button>
                     </div>
                     </form>
 
@@ -89,7 +92,7 @@ function Login() {
                         <button onClick={Login}>Login With Google</button>
                     </div>
                     <div className='Login'>
-                        <p>Not registered yet? <Link to="/signup">Sign Up</Link></p>
+                        <p>Need to Login? <Link to="/login">Login</Link></p>
                     </div>
                     <div className='guest'>
                         <button className='guestBtn' onClick={() => navigate('/home')}>Join as Guest</button>
@@ -99,4 +102,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp

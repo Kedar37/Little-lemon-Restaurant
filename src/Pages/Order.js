@@ -1,6 +1,8 @@
 import React from 'react'
+import Footer from '../Components/Footer'
 
 function Order() {
+
   const style = {
     justifyContent: 'center',
     color: 'white', 
@@ -20,11 +22,14 @@ function Order() {
   }
 
   return (
+    <>
     <div style={bg}>
       <div style={style}>
         <img src='/Images/cont.gif' alt='construction' width={'450px'} height={'450px'} />
       </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 

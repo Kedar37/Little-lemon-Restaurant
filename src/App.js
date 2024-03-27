@@ -1,45 +1,38 @@
 import './App.css';
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route, Link, useNavigate, Router} from 'react-router-dom'
+import { useState, useEffect } from 'react';
+
+
 import Home from './Pages/Home';
 import About from './Pages/About';
-// import Menu from './Pages/Menu';
-// import Order from './Pages/Order';
-// import Reserve from './Pages/Reserve';
-import Footer from './Components/Footer';
 import ConfirmedBooking from './Components/SubComponents/ConfirmedBooking';
 import BookTable from './Components/SubComponents/BookTable';
-import Login from './Pages/Login';
 import MenuOrder from './Pages/MenuOrder';
+
+import { auth } from './firebase';
+import SignUp from './Pages/SignUp';
+import Login from './Pages/Login';
+import Header from './Pages/Header';
+import SignLogin from './Pages/SignLogin';
+import Order from './Pages/Order';
 
 function App() {
 
   return (
-    <>
-      <nav className='navBar'>
-        <div className='navLogo'>
-          <img src='/Images/Logo.svg' alt='logo' />
+        <div className='app'>
+          <Header/>
+            <Routes>
+              <Route path='/' element={<SignLogin/>} />
+              <Route path='/signup' element={<SignUp/>} />
+              <Route path='/login' element={<Login/>} />
+              <Route path='/home' element={<Home/>} />
+              <Route path='/about' element={<About/>} />
+              <Route path='/menu' element={<MenuOrder/>} />
+              <Route path='/order' element={<Order/>} />
+              <Route path='/reserve' element={<BookTable/>} />
+              <Route path='/confirmed-booking' element={<ConfirmedBooking />} />
+            </Routes>
         </div>
-        <div className='links'>
-          <ul>
-            <Link to='/' className='navigation'>Home</Link>
-            <Link to='/about' className='navigation'>About</Link>
-            <Link to='/menu' className='navigation'>Menu</Link>
-            <Link to='/order' className='navigation'>Order</Link>
-            <Link to='/reserve' className='navigation'>Reserve</Link>
-          </ul>
-        </div>
-        <div className='loginBtn' role='button'>Login</div>
-      </nav>
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/about' element={<About/>} />
-        <Route path='/menu' element={<MenuOrder/>} />
-        <Route path='/order' element={<Login/>} />
-        <Route path='/reserve' element={<BookTable/>} />
-        <Route path='/confirmed-booking' element={<ConfirmedBooking />} />
-      </Routes>
-      <Footer />
-    </>
   );
 }
 
